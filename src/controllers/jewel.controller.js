@@ -1,17 +1,17 @@
-import { getJewelModel } from "../models/jewel.model";
-import prepareHATEOAS from "../utils/hateoas";
+import { getJewelModel, getJewelsModelFilters } from "../models/jewel.model.js";
+import prepareHATEOAS from "../utils/hateoas.js";
 
 
 
-export const getJewels = async (req, res) => {
+export const getJewelsController = async (req, res) => {
     console.log(`Fetching Jewels from PostgresSQL...`);
 
     try {
          
-        const jewels = await getJewelModel();
+        const jewels = await getJewelModel(req.query);
 
         const hateoas = prepareHATEOAS(jewels);
-        
+
         return res.status(200).json(hateoas);
 
 
@@ -25,6 +25,31 @@ export const getJewels = async (req, res) => {
 
     }
 
+}
+
+export const getJewelsControllerFilters = async (req, res) => {
+    console.log(`Fetching Jewels from PostgresSQL...`);
+
+    try {
+
+        const jewels = await getJewelsModelFilters(req.query);
+
+        const hateoas = prepareHATEOAS(jewels);
+
+        return res.status(200).json({hateoas})
+
+        
+    } catch (error) {
+        console.log("Error fetching Filtered Jewels", error.message);
+
+        return res.status(500).json({
+            message: "Error fetching Filtered Jewels",
+            error: error.message
+        })
+    }
+
+
+    
 }
 
 

@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
-import routes from './src/routes/jewell.routes.js'
+import Routes from './src/routes/jewell.routes.js'
+import { connectionDB } from './src/database/jewelly_store_db.js';
 
 
 const server = express();
@@ -15,7 +16,7 @@ server.get("/", (req, res) => {
 
 server.use(express.json());
 server.use(cors());
-server.use("/", router)
+server.use("/", Routes)
 
 
 //Exported function to show server connection.

@@ -1,11 +1,15 @@
 import { Router } from "express";
-import { getJewelsController } from "../controllers/jewel.controller";
+import { getJewelsController, getJewelsControllerFilters } from "../controllers/jewel.controller.js";
 
 
 const router = Router();
 
-router.get("/jewels", getJewelsController())
+//GET route..
+router.get("/jewels", getJewelsController)
 
+//GET Route Filtered..
+
+router.get("/jewels/filters", getJewelsControllerFilters)
 
 
 
