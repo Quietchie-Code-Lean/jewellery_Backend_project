@@ -8,7 +8,7 @@ export const getJewelModel = async ({ limit = 10, order_by = "id_ASC", page = 1 
     const [ field, direction ] = order_by.split("_");
     const offset = (page - 1) * limit;
     const formattedQuery = format(
-        'SELECT * FROM inventory ORDER BY %I %s LIMIT $1 OFFSET $1',
+        'SELECT * FROM inventory ORDER BY %I %s LIMIT $1 OFFSET $2',
         field,
         direction
     );

@@ -17,8 +17,8 @@ server.get("/", (req, res) => {
 
 server.use(express.json());
 server.use(cors());
-server.use("/", Routes)
 server.use(reportMiddleware)
+server.use("/", Routes)
 
 
 //Exported function to show server connection.
