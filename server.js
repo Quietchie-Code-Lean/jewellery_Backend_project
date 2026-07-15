@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import Routes from './src/routes/jewell.routes.js'
+import routes from './src/routes/jewell.routes.js'
 import reportMiddleware from './src/middleware/report.js'
 import { connectionDB } from './src/database/jewelly_store_db.js';
 
@@ -9,7 +9,7 @@ const server = express();
 const PORT = 3000;
 
 
-server.get("/", (req, res) => {
+server.get("/", (req, res) => { 
     res.send("Server running correctly!")
 })
 
@@ -18,7 +18,7 @@ server.get("/", (req, res) => {
 server.use(express.json());
 server.use(cors());
 server.use(reportMiddleware)
-server.use("/", Routes)
+server.use("/", routes)
 
 
 //Exported function to show server connection.
